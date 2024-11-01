@@ -1,0 +1,55 @@
+---
+title: "Covid19"
+author: "Julius Okanta"
+date: "2024-11-01"
+output: html_document
+---
+
+# This is a beginner project on R
+
+## Understanding the data
+
+loading the library and reading file
+```{r}
+library(readr)
+covid_df <- read_csv(
+  "C:/Users/Julius Agyei Okanta/OneDrive/Desktop/URV Health Data Science/Projects R/Guided Projects/covid-19/covid19.csv"
+)
+```
+
+Checking dimension of dataframe
+```{r}
+dim(covid_df)
+```
+Checking column names of dataframe
+```{r}
+vector_cols <- colnames(covid_df)
+```
+Displaying first 10 rows
+```{r}
+head(covid_df, 10)
+```
+Viewing columns
+```{r}
+View(covid_df)
+```
+summary of covid_df
+```{r}
+library(tibble)
+glimpse(covid_df)
+summary(covid_df)
+```
+
+## Isolating the data needed
+
+In the dataset, Province_State column has data of different levels - country level and state/province level.To compare results among countries, there is the need to filter data for "All_states" for the analysis. 
+
+- Selecting data for `"All States"` and removing `Province State`
+
+```{r}
+library(dplyr)
+
+covid_df_all_states <- covid_df %>%
+  filter(Province_State == "All States") %>%
+  select(-Province_State)
+```
